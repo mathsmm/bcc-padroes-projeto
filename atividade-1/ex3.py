@@ -35,10 +35,19 @@ class Imovel(ABC):
         self.__definir_valor_comp: DefinirValorComportamento = None
 
     def definir_valor(self):
-        self.__definir_valor_comp.definir_valor(self.__comodos, self.__espaco, self.__localizacao)
+        return self.__definir_valor_comp.definir_valor(self.__comodos, self.__espaco, self.__localizacao)
 
     def set_definir_valor(self, definir_valor_comp: DefinirValorComportamento):
         self.__definir_valor_comp = definir_valor_comp
+
+    def get_comodos(self):
+        return self.__comodos
+
+    def get_espaco(self):
+        return self.__espaco
+
+    def get_localizacao(self):
+        return self.__localizacao
 
 class Casa(Imovel):
     def __init__(self, comodos, espaco, localizacao) -> None:
@@ -74,27 +83,27 @@ def main():
     i6 = Terreno(0, 1000, 'C')
     i6.set_definir_valor(dv2)
 
-    print("Comportamento da Casa 1")
+    print(f"Casa 1: {i1.get_comodos()} cômodos, {i1.get_espaco()}m2, localização {i1.get_localizacao()}")
     print(f"definir_valor: {i1.definir_valor()}")
     print()
 
-    print("Comportamento do Casa 2")
+    print(f"Casa 2: {i2.get_comodos()} cômodos, {i2.get_espaco()}m2, localização {i2.get_localizacao()}")
     print(f"definir_valor: {i2.definir_valor()}")
     print()
 
-    print("Comportamento da Apartamento 1")
+    print(f"Apartamento 1: {i3.get_comodos()} cômodos, {i3.get_espaco()}m2, localização {i3.get_localizacao()}")
     print(f"definir_valor: {i3.definir_valor()}")
     print()
 
-    print("Comportamento da Apartamento 2")
+    print(f"Apartamento 2: {i4.get_comodos()} cômodos, {i4.get_espaco()}m2, localização {i4.get_localizacao()}")
     print(f"definir_valor: {i4.definir_valor()}")
     print()
 
-    print("Comportamento do Terreno 1")
+    print(f"Terreno 1: {i5.get_comodos()} cômodos, {i5.get_espaco()}m2, localização {i5.get_localizacao()}")
     print(f"definir_valor: {i5.definir_valor()}")
     print()
 
-    print("Comportamento do Terreno 2")
+    print(f"Terreno 2: {i6.get_comodos()} cômodos, {i6.get_espaco()}m2, localização {i6.get_localizacao()}")
     print(f"definir_valor: {i6.definir_valor()}")
     print()
 
