@@ -4,13 +4,10 @@ from abc import ABC, abstractmethod
 # Comp é Comportamento
 class DefinirValorComportamento(ABC):
     @abstractmethod
-    def definirValor(self, comodos, espaco, localizacao):
+    def definir_valor(self, comodos, espaco, localizacao) -> float:
         pass
 
 class DefinirValorComEdificacao(DefinirValorComportamento):
-    def __init__(self) -> None:
-        super().__init__()
-
     def definir_valor(self, comodos, espaco, localizacao):
         if localizacao == 'A':
             return (espaco * 3000) + (comodos * 1000)
@@ -20,7 +17,7 @@ class DefinirValorComEdificacao(DefinirValorComportamento):
             return (espaco * 500) + (comodos * 1000)
 
 class DefinirValorSemEdificacao(DefinirValorComportamento):
-    def definirValor(self, comodos, espaco, localizacao):
+    def definir_valor(self, comodos, espaco, localizacao):
         if localizacao == 'A':
             return (espaco * 1500)
         elif localizacao == 'B':
@@ -44,61 +41,62 @@ class Imovel(ABC):
         self.__definir_valor_comp = definir_valor_comp
 
 class Casa(Imovel):
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, comodos, espaco, localizacao) -> None:
+        super().__init__(comodos, espaco, localizacao)
 
 class Apartamento(Imovel):
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, comodos, espaco, localizacao) -> None:
+        super().__init__(comodos, espaco, localizacao)
 
 class Terreno(Imovel):
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, comodos, espaco, localizacao) -> None:
+        super().__init__(comodos, espaco, localizacao)
 
 def main():
     dv1 = DefinirValorComEdificacao()
     dv2 = DefinirValorSemEdificacao()
 
-    b1 = Bateira()
-    b1.set_comp_navegacao(cn1)
+    i1 = Casa(5, 100, 'A')
+    i1.set_definir_valor(dv1)
 
-    b2 = Iate()
-    b2.set_comp_navegacao(cn1)
+    i2 = Casa(8, 150, 'C')
+    i2.set_definir_valor(dv1)
 
-    b3 = Canoa()
-    b3.set_comp_navegacao(cn2)
+    i3 = Apartamento(4, 35, 'B')
+    i3.set_definir_valor(dv1)
 
-    b4 = Jangada()
-    b4.set_comp_navegacao(cn2)
+    i4 = Apartamento(8, 200, 'A')
+    i4.set_definir_valor(dv1)
 
-    b5 = BarcoAVela()
-    b5.set_comp_navegacao(cn3)
+    i5 = Terreno(0, 500, 'B')
+    i5.set_definir_valor(dv2)
 
-    print("Comportamento da Bateira")
-    print("efetuar_navegar: ", end="")
-    b1.efetuar_navegar()
+    i6 = Terreno(0, 1000, 'C')
+    i6.set_definir_valor(dv2)
+
+    print("Comportamento da Casa 1")
+    print(f"definir_valor: {i1.definir_valor()}")
     print()
 
-    print("Comportamento do Iate")
-    print("efetuar_navegar: ", end="")
-    b2.efetuar_navegar()
+    print("Comportamento do Casa 2")
+    print(f"definir_valor: {i2.definir_valor()}")
     print()
 
-    print("Comportamento da Canoa")
-    print("efetuar_navegar: ", end="")
-    b3.efetuar_navegar()
+    print("Comportamento da Apartamento 1")
+    print(f"definir_valor: {i3.definir_valor()}")
     print()
 
-    print("Comportamento da Jangada")
-    print("efetuar_navegar: ", end="")
-    b4.efetuar_navegar()
+    print("Comportamento da Apartamento 2")
+    print(f"definir_valor: {i4.definir_valor()}")
     print()
 
-    print("Comportamento do Barco à Vela")
-    print("efetuar_navegar: ", end="")
-    b5.efetuar_navegar()
+    print("Comportamento do Terreno 1")
+    print(f"definir_valor: {i5.definir_valor()}")
     print()
 
+    print("Comportamento do Terreno 2")
+    print(f"definir_valor: {i6.definir_valor()}")
+    print()
 
 if __name__ == "__main__":
     main()
